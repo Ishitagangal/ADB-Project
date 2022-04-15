@@ -51,10 +51,3 @@ dump on site - Done
 reprozip - Done
 
 flag all the replicated variables if a site is down and don't allow read until something is written to it - Done by using foundVariables list
-
-Test Cases Tested:
-Working: 1, 2, 3, 3.5, 3.7, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20(checked by adding end(T5) and then end(T1) to test, 21, 11
-
-Not working: 11 -> detecting self loop as a cycle. Add condition to check if loop detected has only one transaction in graph.cycleTransactions, if yes then it should return false for cycle. -- FIXED. i think.
-
-18,19 ->Even variable write lock not getting acquired. check why. they are present in the wait queue though, so maybe add a check for this. -- FIXED
