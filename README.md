@@ -1,6 +1,4 @@
 # ADB
-Team : Ishta Gangal (ig1043) and Divya Juneja (dj1322)
-
 This project was written in Python (Python 3.6) 
 
 To execute source code without reprounzip navigate to source code that contains the code and run:
