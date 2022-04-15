@@ -1,0 +1,15 @@
+begin(T1)
+begin(T2)
+begin(T3)
+W(T1,x1, 9)
+fail(2)
+W(T2,x8,88) 
+W(T2,x1, 40)
+R(T1, x5)
+recover(2)
+end(T2)
+end(T1)
+end(T3)
+dump()
+
+// T1 acquires write lock on x1 and aborts when site 2 fails, releasing that write lock. T2 acquires write lock on x8 and since site 1 is down, it cannot access x1. T2 writes x8 to 88 on all the sites except site 2. In this case, T2 is waiting for site 2 to be able to access x1. Here, site 2 recovers before T2 commits and so command is stored and executed/ write lock is acquired on x1 when site recovers. Only odd variable (non-replicated) gets executed on recovery of site. Thus, x1 has value 40. X8 has value 88 on all sites except site 2.

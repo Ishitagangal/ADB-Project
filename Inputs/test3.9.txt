@@ -1,0 +1,14 @@
+begin(T1)
+begin(T2)
+R(T1,x3)
+W(T2,x8,88) 
+fail(2)
+R(T2,x3)
+W(T1,x8,99)
+recover(2)
+W(T1, x4,91)
+end(T2)
+end(T1)
+dump()
+
+// T2 aborts as site 2 failed and it accessed variable stored on it. T1 acquired the lock on x8 released by T2 abortion. x8 has value 99 except on site 2. Non-replicated variables are not allowed to be read on this site until they are written onto. T4 acquires write lock onto x4 and writes to all sites including site 2 which has recovered now.

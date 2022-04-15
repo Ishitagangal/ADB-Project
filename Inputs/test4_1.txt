@@ -1,0 +1,15 @@
+begin(T1)
+begin(T2)
+begin(T3)
+R(T1,x1)
+fail(2)
+W(T2,x8,88) 
+W(T2,x1, 40)
+R(T1, x5)
+end(T2)
+recover(2)
+end(T1)
+dump()
+
+// T1 acquires read lock on x1 and aborts when site 2 fails, releasing that read lock. T2 acquires write lock on x8 and since site 1 is down, it cannot access x1. T2 writes x8 to 88 on all the sites except site 2. In this case, T2 is waiting for site 2 to be able to access x1 but commits before. 
+// Here, some may abort the transaction T2 as it is in blocked state and some may commit T2 with x8 being written and x1 not. As per, our implementation, x8 is being written to 88. X1 stays unchanged as it is committed before site 2 recovers.

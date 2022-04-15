@@ -1,0 +1,11 @@
+begin(T1)
+begin(T2)
+W(T1,x1,15)
+R(T2,x1)
+R(T1,x1)
+W(T1,x1,41)
+end(T1)
+end(T2)
+dump()
+
+// Case given in handouts, where there will be a waits-for edge from T2 to T1 but the R(T1,x1) will not need to wait for a lock because T1 already has a write-lock which is sufficient for the read. W(T1,x1,41) will be able to write as it already has a write lock.

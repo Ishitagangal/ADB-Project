@@ -1,0 +1,11 @@
+begin(T1)
+begin(T2)
+begin(T3)
+begin(T4)
+R(T1,x1)
+R(T2,x1)
+W(T3,x1,73)
+R(T4,x1)
+dump()
+
+// This test case changes the handout edge case a little. Here, T1 and T2 will get the read locks as multiple reads are allowed. T3 will not be able to get write lock as there is a read lock by another transaction on that variable. T4 will not be able to get read lock as T3 is waiting for a write lock before.
